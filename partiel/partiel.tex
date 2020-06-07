@@ -1,0 +1,98 @@
+\documentclass[french, a4paper, notitlepage, 12pt]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[french,english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[left=3cm,right=2cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{helvet}
+\usepackage{graphicx}
+\usepackage{afterpage}
+\usepackage{parskip}
+\usepackage{glossaries}
+\usepackage{comment}
+\usepackage{titletoc}
+\usepackage{lipsum}
+\usepackage{titlesec}
+
+% tableau
+\usepackage{array,multirow,makecell}
+\setcellgapes{1pt}
+\makegapedcells
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash }b{#1}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash }b{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash }b{#1}}
+\newcommand\tabitem{~~\llap{\textbullet}~~}
+
+% ecrire du pseudo code
+\usepackage{algorithm,algpseudocode} % ecrire du pseudo code
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+\setlength\parindent{11pt}
+
+\titleformat{\chapter}[display]
+  {\centering\normalfont\huge\bfseries}
+  {\chaptertitlename\ \thechapter}
+  {20pt}
+  {\Huge}
+
+\begin{document}
+\chapter*{Devoir 2}
+\section*{exercie 1}
+\noindent 1.
+
+\begin{center}
+  \begin{tabular}{C{0.5cm}|C{1.5cm} C{1.5cm} C{1.5cm}}
+    $\delta$ & $a$           & $b$           & $B$           \\ \hline
+    $q_0$    & $(q_1, a, D)$ & $(q_0, b, D)$ & $(q_f, B, G)$ \\
+    $q_1$    & $(q_0, a, D)$ & $(q_1, b, D)$ &               \\
+  \end{tabular}
+\end{center}
+
+\noindent 2.
+aaaa
+
+\noindent 3.
+bbbbb
+
+\section*{Exercie 2}
+
+\newpage
+\noindent 2.
+\begin{algorithm}[H]
+  \caption{Tri par comptage}
+  \begin{algorithmic}[1]
+    \Statex
+    \Function{TriComptage}{$tab[\;]$: tableau[1..n] d'entier, $n$: entier}
+    \State {$min$ $\gets$ {$tab[1]$}}
+    \State {$max$ $\gets$ {$tab[1]$}}
+    \For{$i \gets 2$ to $n$} // Initialisation de $min$ et $max$
+    \If{$tab[i] < min$}
+    \State {$min$ $\gets$ {$tab[i]$}}
+    \EndIf
+    \If{$tab[i] > max$}
+    \State {$max$ $\gets$ {$tab[i]$}}
+    \EndIf
+    \EndFor
+    \State {$tabComptage$ $\gets$ {$[\;]$}}
+    \For{$i \gets 1$ to $max-min+1$} // Initialisation de $tabComptage$
+    \State {$tabComptage[i]$ $\gets$ {$0$}}
+    \EndFor
+    \For{$i \gets 1$ to $n$} // Remplit $tabComptage$
+    \State {$tabComptage[tab[i]-min+1]$ $\gets$ {$tabComptage[tab[i]-min+1]+1$}}
+    \EndFor
+    \State {$i$ $\gets$ {$1$}}
+    \For{$k \gets 1$ to $max-min+1$} // Arrange $tab$
+    \For{$j \gets 1$ to $tabComptage[k]$}
+    \State {$tab[i]$ $\gets$ {$k+min-1$}}
+    \State {$i$ $\gets$ {$i+1$}}
+    \EndFor
+    \EndFor
+    \State \Return {$tab$}
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
+
+\end{document}
